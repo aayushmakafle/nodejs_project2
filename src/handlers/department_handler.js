@@ -1,4 +1,6 @@
 import prisma from "../db/prisma.js"
+import z from "zod"
+import { createDepartmentValidationSchema, updateDepartmentValidationSchema } from "../validators/zod_validator.js"
 
 let FindAllDepartments = async (requestAnimationFrame, res) => {
     let allDepartments = await prisma.department.findMany({
@@ -25,29 +27,67 @@ let FindDepartmentById = async (req, res) => {
     })
 }
 let CreateDepartment = async (req, res) => {
-    let { name } = req.body
-    let createDepartment = await prisma.department.create({
-        data: {
-            name,
+    try {
+        createDepartmentValidationSchema.parse(req.body)
+        let { name } = req.body
+        let createDepartment = await prisma.department.create({
+            data: {
+                name,
+            }
+        })
+        res.status(201).json({
+            message: "department created successfully",
+            data: createDepartment
+        })
+    } catch (e) {
+        if (e instanceof z.ZodError) {
+            let errors = e.issues.map((ele) => {
+                return {
+                    field: ele.path[0],
+                    message: ele.message
+                }
+            })
+            res.status(400).json({
+                message: "validation failed",
+                errors
+            })
         }
-    })
-    res.status(201).json({
-        message: "department created successfully",
-        data: createDepartment
-    })
+        else {
+            res.status(500).json({
+                message: "error occured while creating department",
+                stack: e.message
+            })
+        }
+    }
 }
 let UpdateDepartment = async (req, res) => {
-    let id = req.params.id
-    let { email, name, rollNo } = req.body
-    let updatedDepartment = await prisma.department.update({
-        where: { id: Number(id) },
-        data: { email, name, rollNo }
-    })
-    response.status(200).json({
-        message: `department with id ${id} updated successfully`,
-        data: updatedDepartment
+    try {
+        updateDepartmentValidationSchema.parse(req.body)
+        let id = req.params.id
+        let { name } = req.body
+        let updatedDepartment = await prisma.department.update({
+            where: { id: Number(id) },
+            data: { name, }
+        })
+        response.status(200).json({
+            message: `department with id ${id} updated successfully`,
+            data: updatedDepartment
+        }
+        )
+    } catch (e) {
+        if (e instanceof z.ZodError) {
+            let errors = e.issues.map((ele) => {
+                return {
+                    field: ele.path[0],
+                    message: ele.message
+                }
+            })
+            res.status(400).json({
+                message: "validation failed",
+                errors
+            })
+        }
     }
-    )
 }
 let DeleteDepartment = async (req, res) => {
     let id = req.params.id
