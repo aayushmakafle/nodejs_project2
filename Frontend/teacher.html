@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Management | EduManage Pro</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#54647a",
+                        "tertiary": "#943700",
+                        "surface": "#f7f9fb",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#ffede6",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-background": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "primary": "#004ac6",
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-tint": "#0053db",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-surface-variant": "#434655",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#505f76",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "secondary-container": "#d0e1fb",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "container-padding": "32px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-sm": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .sidebar-active { border-left: 4px solid #004ac6; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (Predicted from JSON) -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-sm flex flex-col h-full">
+<div class="px-lg py-xl flex flex-col gap-xs">
+<h1 class="font-title-lg text-title-lg font-bold text-on-surface dark:text-inverse-on-surface">EduManage Pro</h1>
+<p class="text-on-secondary-container font-label-md text-label-md">Admin Console</p>
+</div>
+<nav class="flex-grow py-md flex flex-col">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Students</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">business</span>
+<span class="font-body-md text-body-md">Departments</span>
+</a>
+<!-- ACTIVE TAB: Teachers -->
+<a class="flex items-center gap-md bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed border-l-4 border-primary px-lg py-md active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">Teachers</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">book</span>
+<span class="font-body-md text-body-md">Courses</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-body-md text-body-md">Enrollments</span>
+</a>
+</nav>
+<div class="mt-auto py-md border-t border-outline-variant">
+<button class="mx-lg my-sm py-md px-lg bg-primary text-on-primary rounded-lg font-title-md text-title-md flex items-center justify-center gap-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">description</span>
+                Generate Reports
+            </button>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Predicted from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-xl z-10">
+<div class="flex items-center gap-md flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-full transition-all">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-2 bg-surface-container-low border-none rounded-full font-body-md text-body-md text-on-surface focus:ring-0" placeholder="Search by Teacher Name..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-full">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-lg">
+<div class="text-right">
+<p class="font-title-md text-title-md leading-tight">Admin User</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed shadow-sm" data-alt="A close-up high-resolution profile portrait of a professional university administrator in business attire, looking confident and friendly. The lighting is soft and corporate, with a clean architectural background of a modern campus office. The style is crisp and professional, using a bright and clean color palette typical of a modern UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD__ypK0T8eMwm6GQc_2Rgdiit2E0MaZlaYN2X3_TRDGGwVKGDGqMK9fiR_TAfvqquTx1_K5FeFI8Sa5G9TqYim4T44UngcJZQSz43HijfDkpdqfU1apDgMfcBHnNiVlYF6OSg_NWjm0EDGnmw2RqCrDiHfLfe6FU7pRYIlLtOdSmaBiMKa1xOa0EYksrjUDhZgHe_0DVGOh80gSxsWrvJ1OC0x3EV5P7DhmdEbBESSktOrANySd3MhjclEmN0eCxiLZbN35wU95y4"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="p-container-padding">
+<!-- Header Section with Stats/Bento vibe -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-display-sm text-display-sm text-on-surface">Teacher Management</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Organize and manage academic staff records</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-md rounded-xl font-title-md text-title-md flex items-center gap-sm shadow-md hover:shadow-lg transition-all active:scale-95" onclick="openModal()">
+<span class="material-symbols-outlined">person_add</span>
+                    Add Teacher
+                </button>
+</div>
+<!-- Bento Stats Section -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs">
+<span class="text-on-secondary-container font-label-md text-label-md">Total Faculty</span>
+<span class="text-display-sm font-display-sm text-primary">124</span>
+<div class="mt-base flex items-center text-emerald-600 gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-label-md text-label-md">+4% this semester</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs">
+<span class="text-on-secondary-container font-label-md text-label-md">Total Departments</span>
+<span class="text-display-sm font-display-sm">12</span>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs">
+<span class="text-on-secondary-container font-label-md text-label-md">Average Load</span>
+<span class="text-display-sm font-display-sm">4.2 <span class="text-title-md font-normal text-on-surface-variant">courses/yr</span></span>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-xs">
+<span class="text-on-secondary-container font-label-md text-label-md">Staff Satisfaction</span>
+<span class="text-display-sm font-display-sm">92%</span>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ID</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Teacher Name</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Department</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Course Count</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md font-data-mono text-data-mono text-outline">T-10023</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">JD</div>
+<div>
+<p class="font-title-md text-title-md">Dr. Jane Doe</p>
+<p class="font-body-md text-body-md text-on-surface-variant">jane.doe@edupro.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-body-md text-body-md bg-secondary-container text-on-secondary-container px-sm py-1 rounded">Computer Science</span>
+</td>
+<td class="px-lg py-md text-center font-title-md text-title-md">5</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-1 rounded-full bg-emerald-100 text-emerald-700 font-label-md text-label-md">Active</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed rounded transition-all" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container rounded transition-all" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md font-data-mono text-data-mono text-outline">T-10024</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">MS</div>
+<div>
+<p class="font-title-md text-title-md">Prof. Mark Smith</p>
+<p class="font-body-md text-body-md text-on-surface-variant">m.smith@edupro.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-body-md text-body-md bg-secondary-container text-on-secondary-container px-sm py-1 rounded">Mathematics</span>
+</td>
+<td class="px-lg py-md text-center font-title-md text-title-md">3</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-1 rounded-full bg-emerald-100 text-emerald-700 font-label-md text-label-md">Active</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed rounded transition-all" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container rounded transition-all" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md font-data-mono text-data-mono text-outline">T-10025</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold">AL</div>
+<div>
+<p class="font-title-md text-title-md">Dr. Alice Liang</p>
+<p class="font-body-md text-body-md text-on-surface-variant">aliang@edupro.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-body-md text-body-md bg-secondary-container text-on-secondary-container px-sm py-1 rounded">Mechanical Engineering</span>
+</td>
+<td class="px-lg py-md text-center font-title-md text-title-md">6</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md">On Leave</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed rounded transition-all" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container rounded transition-all" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-lg py-md font-data-mono text-data-mono text-outline">T-10026</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">RW</div>
+<div>
+<p class="font-title-md text-title-md">Robert White</p>
+<p class="font-body-md text-body-md text-on-surface-variant">r.white@edupro.com</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-body-md text-body-md bg-secondary-container text-on-secondary-container px-sm py-1 rounded">Business Admin</span>
+</td>
+<td class="px-lg py-md text-center font-title-md text-title-md">2</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-1 rounded-full bg-emerald-100 text-emerald-700 font-label-md text-label-md">Active</span>
+</td>
+<td class="px-lg py-md text-right">
+<div class="flex justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed rounded transition-all" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container rounded transition-all" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-lg py-md bg-surface-container-low flex justify-between items-center border-t border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 4 of 124 teachers</p>
+<div class="flex gap-sm">
+<button class="px-md py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-md py-1 border border-primary rounded bg-primary text-on-primary">1</button>
+<button class="px-md py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors">2</button>
+<button class="px-md py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors">3</button>
+<button class="px-md py-1 border border-outline-variant rounded bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-300" id="modal-backdrop">
+<!-- Add Teacher Form Modal -->
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden scale-95 transition-transform duration-300" id="modal-content">
+<div class="px-xl py-lg bg-primary text-on-primary flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg">Add New Teacher</h3>
+<button class="hover:bg-white/10 p-1 rounded-full transition-colors" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-xl space-y-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Full Name</label>
+<input class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="e.g. Dr. Robert Wilson" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Department</label>
+<select class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all appearance-none bg-no-repeat bg-[right_0.5rem_center]">
+<option>Select Department</option>
+<option>Computer Science</option>
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Engineering</option>
+<option>Business</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Employee ID</label>
+<input class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="T-XXXXX" type="text"/>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Email Address</label>
+<input class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="robert.wilson@edupro.com" type="email"/>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Initial Course Count</label>
+<input class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all" min="0" type="number" value="0"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block uppercase">Academic Status</label>
+<select class="w-full px-md py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+<option>Full-Time</option>
+<option>Part-Time</option>
+<option>Guest Faculty</option>
+<option>On Leave</option>
+</select>
+</div>
+</div>
+<div class="pt-md flex gap-md">
+<button class="flex-1 py-3 border border-outline-variant rounded-xl font-title-md text-title-md text-on-surface-variant hover:bg-surface-container transition-colors" onclick="closeModal()" type="button">
+                        Cancel
+                    </button>
+<button class="flex-1 py-3 bg-primary text-on-primary rounded-xl font-title-md text-title-md shadow-md hover:opacity-90 active:scale-95 transition-all" type="submit">
+                        Register Teacher
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function openModal() {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.add('opacity-100');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+            backdrop.classList.remove('opacity-100');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Search highlight micro-interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>

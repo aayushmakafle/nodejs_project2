@@ -24,12 +24,17 @@ let FindStudentById = async (req, res) => {
 let CreateStudent = async (req, res) => {
     try {
         createStudentValidationSchema.parse(req.body)
-        let { email, name, rollNo } = req.body
+        let { email, name, rollNo, departmentId } = req.body
         let createdStudent = await prisma.student.create({
             data: {
                 name,
                 email,
-                rollNo
+                rollNo,
+                department: {
+                    connect: {
+                        id: Number(departmentId)
+                    }
+                }
             }
         })
         res.status(201).json({

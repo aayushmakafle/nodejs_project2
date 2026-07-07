@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Management | EduManage Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#54647a",
+                        "tertiary": "#943700",
+                        "surface": "#f7f9fb",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#ffede6",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-background": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-container": "#2563eb",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "primary": "#004ac6",
+                        "tertiary-container": "#bc4800",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-tint": "#0053db",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-surface-variant": "#434655",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7f9fb",
+                        "secondary": "#505f76",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-variant": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "container-padding": "32px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .soft-depth { box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03); }
+        .modal-backdrop { background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- Side Navigation Bar -->
+<aside class="w-[280px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant shadow-sm flex flex-col z-50">
+<div class="px-lg py-xl">
+<h1 class="font-title-lg text-title-lg font-bold text-on-surface">EduManage Pro</h1>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Students</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">business</span>
+<span class="font-body-md text-body-md">Departments</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">Teachers</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container border-l-4 border-primary px-lg py-md active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">book</span>
+<span class="font-body-md text-body-md">Courses</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-body-md text-body-md">Enrollments</span>
+</a>
+</nav>
+<div class="p-lg border-t border-outline-variant space-y-1">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-title-md text-title-md mb-md shadow-sm active:scale-95 transition-transform">
+                Generate Reports
+            </button>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-xl z-40">
+<div class="flex items-center gap-lg">
+<h2 class="font-title-lg text-title-lg font-bold text-primary">Student Management System</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant scale-75">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search courses..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 hover:bg-surface-container-high rounded-full relative transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface font-bold">Admin User</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Super Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a middle-aged male administrator in a clean office setting, wearing a sharp navy blue suit and glasses. The lighting is bright and professional, following a modern corporate aesthetic with soft shadows. The background is a slightly blurred modern education office with minimalist furniture and neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj0369rwCdpWMiiDL_J1MIh7YrTFrzUU27bqRadJ5_vzrbcrU0PIL4p8G6Q00pgDEoLqP1JPaoX33tH_jCrVTnxnKmeD7kzKWlDVArTRItTpM03NQJtxvqwyD9NoD5G8lVhgDLnf_zK9g4HjQlZVESdNVmrZUU9grpQEPM-f2QjW_8_Xm2LZeyc05Y_ZnAJpf9kxi8Kv6ODdJkEU4j_dZW48rQeumkj5LXNykOborGBrQr4NjOD_ei0_rK7Sspxe4FbK5Nh_nQUEM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] pt-16 min-h-screen p-xl bg-background">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h1 class="font-display-sm text-display-sm text-on-surface mb-xs">Course Inventory</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage curriculum, credits, and faculty assignments across all departments.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-lg py-2.5 rounded-lg font-title-md text-title-md shadow-sm hover:opacity-90 active:scale-95 transition-all" onclick="document.getElementById('courseModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Add Course
+            </button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-lowest p-md rounded-xl soft-depth border border-outline-variant mb-lg flex flex-wrap gap-lg items-center">
+<div class="flex items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant">FILTER BY:</span>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-2 font-body-md focus:ring-primary focus:border-primary">
+<option>All Teachers</option>
+<option>Dr. Alan Turing</option>
+<option>Prof. Grace Hopper</option>
+<option>Dr. Margaret Hamilton</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-2 font-body-md focus:ring-primary focus:border-primary">
+<option>All Credit Counts</option>
+<option>1-2 Credits</option>
+<option>3 Credits</option>
+<option>4+ Credits</option>
+</select>
+</div>
+<div class="ml-auto flex items-center gap-sm">
+<span class="text-body-md text-on-surface-variant">Showing 1-12 of 48 Courses</span>
+<div class="flex gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest rounded-xl soft-depth border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Course ID</th>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Course Name</th>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Credits</th>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Assigned Teacher</th>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Enrollments</th>
+<th class="px-xl py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-xl py-md font-data-mono text-data-mono text-primary">CS-101</td>
+<td class="px-xl py-md">
+<p class="font-title-md text-title-md text-on-surface">Introduction to Computer Science</p>
+<p class="text-[12px] text-on-surface-variant">Department: School of Engineering</p>
+</td>
+<td class="px-xl py-md text-center">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md">3.0</span>
+</td>
+<td class="px-xl py-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-xs">AT</div>
+<span class="font-body-md text-body-md text-on-surface">Dr. Alan Turing</span>
+</div>
+</td>
+<td class="px-xl py-md text-center">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">124</span>
+</td>
+<td class="px-xl py-md text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg text-on-surface-variant transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-on-error-container rounded-lg text-on-surface-variant transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-xl py-md font-data-mono text-data-mono text-primary">MAT-205</td>
+<td class="px-xl py-md">
+<p class="font-title-md text-title-md text-on-surface">Advanced Linear Algebra</p>
+<p class="text-[12px] text-on-surface-variant">Department: Mathematics</p>
+</td>
+<td class="px-xl py-md text-center">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md">4.0</span>
+</td>
+<td class="px-xl py-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-bold text-xs">GH</div>
+<span class="font-body-md text-body-md text-on-surface">Prof. Grace Hopper</span>
+</div>
+</td>
+<td class="px-xl py-md text-center">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">45</span>
+</td>
+<td class="px-xl py-md text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-on-error-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-xl py-md font-data-mono text-data-mono text-primary">BIO-312</td>
+<td class="px-xl py-md">
+<p class="font-title-md text-title-md text-on-surface">Molecular Biology Essentials</p>
+<p class="text-[12px] text-on-surface-variant">Department: Biology &amp; Health Sciences</p>
+</td>
+<td class="px-xl py-md text-center">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md">4.0</span>
+</td>
+<td class="px-xl py-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed font-bold text-xs">MH</div>
+<span class="font-body-md text-body-md text-on-surface">Dr. Margaret Hamilton</span>
+</div>
+</td>
+<td class="px-xl py-md text-center">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">82</span>
+</td>
+<td class="px-xl py-md text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-on-error-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-xl py-md font-data-mono text-data-mono text-primary">HIS-110</td>
+<td class="px-xl py-md">
+<p class="font-title-md text-title-md text-on-surface">Global History &amp; Civilizations</p>
+<p class="text-[12px] text-on-surface-variant">Department: Humanities</p>
+</td>
+<td class="px-xl py-md text-center">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md">3.0</span>
+</td>
+<td class="px-xl py-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold text-xs">JD</div>
+<span class="font-body-md text-body-md text-on-surface">Prof. Jane Doe</span>
+</div>
+</td>
+<td class="px-xl py-md text-center">
+<span class="font-body-lg text-body-lg font-bold text-on-surface">210</span>
+</td>
+<td class="px-xl py-md text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-on-error-container rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<!-- Add Course Modal -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4" id="courseModal">
+<div class="modal-backdrop absolute inset-0" onclick="document.getElementById('courseModal').classList.add('hidden')"></div>
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl z-10 overflow-hidden border border-outline-variant relative">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-display-sm text-display-sm text-on-surface">Add New Course</h3>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="document.getElementById('courseModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-lg space-y-md">
+<div class="grid grid-cols-2 gap-md">
+<div class="col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 uppercase">Course Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="e.g. Applied Macroeconomics" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 uppercase">Course ID</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="ECON-201" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 uppercase">Credits</label>
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+<option>1.0</option>
+<option>2.0</option>
+<option selected="">3.0</option>
+<option>4.0</option>
+<option>5.0</option>
+</select>
+</div>
+<div class="col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 uppercase">Assigned Teacher</label>
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+<option disabled="" selected="">Select a faculty member...</option>
+<option>Dr. Alan Turing</option>
+<option>Prof. Grace Hopper</option>
+<option>Dr. Margaret Hamilton</option>
+<option>Prof. Jane Doe</option>
+</select>
+</div>
+<div class="col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1 uppercase">Description</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Brief course overview..." rows="3"></textarea>
+</div>
+</div>
+<div class="pt-lg flex gap-md justify-end">
+<button class="px-lg py-2.5 rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="document.getElementById('courseModal').classList.add('hidden')" type="button">
+                        Cancel
+                    </button>
+<button class="px-xl py-2.5 bg-primary text-on-primary rounded-lg font-title-md text-title-md shadow-md hover:opacity-90 active:scale-95 transition-all" type="submit">
+                        Create Course
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple ripple effect for primary buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function(e) {
+                const x = e.clientX - e.target.offsetLeft;
+                const y = e.clientY - e.target.offsetTop;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.className = 'absolute w-1 h-1 bg-white/20 rounded-full animate-ping';
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Close modal on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('courseModal').classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

@@ -1,23 +1,23 @@
 import { Router } from "express"
 import { CreateStudent, DeleteStudent, FindAllStudents, FindStudentById, UpdateStudent } from "../handlers/handler.js"
-let router=Router()
-router.get(
-    "/",FindAllStudents
-)
+import { authMiddleware } from "../middlewares/auth_middleware.js"
+let router = Router()
+
+router.get("/", authMiddleware, FindAllStudents)
 router.get(
     "/:id",
     FindStudentById
 )
 router.post(
-    "/",
+    "/",authMiddleware,
     CreateStudent
 )
 router.put(
-    "/:id",
+    "/:id",authMiddleware,
     UpdateStudent
 )
 router.delete(
-    "/:id",
+    "/:id",authMiddleware,
     DeleteStudent
 )
 

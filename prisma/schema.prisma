@@ -14,6 +14,8 @@ datasource db {
 }
 
 model Student {
+  docs String[]@map("documents")//make separate route named "upload-student-docs"
+  studentCard String? @map("student_card")//make separate route named "upload-student-card"
   id           Int          @id @default(autoincrement())
   name         String
   email        String       @unique
@@ -45,6 +47,7 @@ model Teacher {
   CreatedAt    DateTime   @default(now()) @map("created_at")
   UpdatedAt    DateTime   @updatedAt @map("updated_at")
   name         String     @unique
+  // email        String     @unique
   departmentId Int        @map("department_id") //foreign key to Department
   department   Department @relation(fields: [departmentId], references: [id]) //Belongs to one department
 
@@ -76,4 +79,17 @@ model Enrollment {
   course     Course   @relation(fields: [course_id], references: [id])
   enrolledAt DateTime @default(now()) @map("enrollment_at")
   status     String   @default("Active")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String   @unique
+  password  String //store hashed password,never store the plain text password
+  role      String   @default("user") //can be "user" or "admin"
+  profileImage String? @map("profile_image")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
 }
